@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Title</title>
+    <title>Microservices Overview</title>
     <meta charset="utf-8">
     <style>
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
@@ -21,19 +21,149 @@
 
 class: center, middle
 
-# Microservice Overview
+# Microservices Overview
+
+???
+Welcome to the microservices tutorial.
 
 ---
 
 # Agenda
 
 1. Introduction
-2. Deep-dive
+2. Philosophy
 3. ...
 
 ---
+count: false
 
 # Introduction
+
+## What is a microservice?
+A microservice is a small application that performs a single functionality.
+
+## Where it goes?
+A microservice should be able to run everywhere.
+
+## How to build them?
+You can use any language that provide RESTful APIs.
+
+---
+# Phylosophy
+
+## A single microservice must be:
+
+### Monolithic
+### Resilient
+### Independent
+
+---
+
+# Monolithic
+
+## A single job fuction
+## A single focus
+
+---
+
+# Resilient
+
+## Failures will happen
+## High available
+## Recoverable
+
+---
+
+# Independent
+
+## Upgrade without impact
+
+---
+
+# Real Life Examples
+
+## Human Cells
+## Farm Animals
+
+???
+## Human Cells
+Human cells are constantly dying and contantly regenerating.  Although we dont upgrade cells (yet) the idea is that you dont stop existing as because of this process.
+
+## Farms
+Farm animals unlike pet are raised there is a lot of emotion when the family pet die, but a farm animal when it die tend to be replace by another one and the replaced one is quickly forgotten.  
+
+---
+
+# Microservice Development
+
+## 12 Factors
+```https://12factor.net/```
+- I. Codebase
+- II. Dependencies
+- III. Config
+- IV. Backing services
+- V. Build, release, run
+- VI. Processes
+- VII. Port binding
+- VIII. Concurrency
+- IX. Disposability
+- X. Dev/prod parity
+- XI. Logs
+- XII. Admin processes
+
+???
+
+I. Codebase
+
+One codebase tracked in revision control, many deploys
+
+II. Dependencies
+
+Explicitly declare and isolate dependencies
+
+III. Config
+
+Store config in the environment
+
+IV. Backing services
+
+Treat backing services as attached resources
+
+V. Build, release, run
+
+Strictly separate build and run stages
+
+VI. Processes
+
+Execute the app as one or more stateless processes
+
+VII. Port binding
+
+Export services via port binding
+
+VIII. Concurrency
+
+Scale out via the process model
+
+IX. Disposability
+
+Maximize robustness with fast startup and graceful shutdown
+
+X. Dev/prod parity
+
+Keep development, staging, and production as similar as possible
+
+XI. Logs
+
+Treat logs as event streams
+
+XII. Admin processes
+
+Run admin/management tasks as one-off processes
+
+
+
+
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
