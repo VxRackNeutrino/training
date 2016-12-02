@@ -12,8 +12,22 @@
       h1, h2, h3 {
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
+        text-align: left;
       }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .pic {
+        vertical-align: middle;
+        text-align: center;
+        /*padding: 0 0 0 0 !important;*/
+      }
+      img {
+        /*max-width: 40%;*/
+        max-height: 500px;
+        vertical-align: middle;
+        text-align: center;
+        /*padding: 0 0 0 0 !important;*/
+    
+      }      
     </style>
   </head>
   <body>
@@ -106,7 +120,7 @@ Farm animals unlike pet are raised there is a lot of emotion when the family pet
 - VI. Processes
 - VII. Port binding
 - VIII. Concurrency
-- IX. Disposability
+- IX. margin-bottomDisposability
 - X. Dev/prod parity
 - XI. Logs
 - XII. Admin processes
@@ -119,7 +133,7 @@ One codebase tracked in revision control, many deploys
 
 II. Dependencies
 
-Explicitly declare and isolate dependencies
+Explicitly decla![One Cloud](OneCloud.png)re and isolate dependencies
 
 III. Config
 
@@ -135,12 +149,16 @@ Strictly separate build and run stages
 
 VI. Processes
 
-Execute the app as one or more stateless processes
+Execute the app as       .pic {
+        vertical-align: middle;
+        text-align: center;
+        padding: 0 0 0 0 !important;
+      }one or more stateless processes
 
 VII. Port binding
 
 Export services via port binding
-
+https://termsfeed.com/
 VIII. Concurrency
 
 Scale out via the process model
@@ -161,8 +179,42 @@ XII. Admin processes
 
 Run admin/management tasks as one-off processes
 
+---
+class: pic
+# Monolithic Solution
 
+![One Cloud](OneCloud.png)
 
+---
+class: pic
+# Scale Out Monolithic Solution
+
+![Two Clouds](TwoClouds.png)
+
+---
+class: pic
+# Microservice Solution
+
+![Microservice Image with two containers in spread across two nodes](Micro1.png)
+
+---
+class: pic
+# Microservice Solution
+
+![Microservice Image with more containers in spread across three nodes](Micro2.png)
+
+---
+class: pic
+# Microservice Solution
+
+![Distributed DB across three nodes](db1.png)
+
+---
+
+# Conclusion
+
+---
+# Questions?
 
 
     </textarea>
