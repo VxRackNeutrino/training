@@ -46,7 +46,7 @@ Welcome to the microservices tutorial.
 
 1. Introduction
 2. Philosophy
-3. ...
+3. Nature Example
 
 ---
 count: false
@@ -94,7 +94,7 @@ You can use any language that provide RESTful APIs.
 
 ---
 
-# Real Life Examples
+# Nature Examples
 
 ## Human Cells
 ## Farm Animals
@@ -106,12 +106,45 @@ Human cells are constantly dying and contantly regenerating.  Although we dont u
 ## Farms
 Farm animals unlike pet are raised there is a lot of emotion when the family pet die, but a farm animal when it die tend to be replace by another one and the replaced one is quickly forgotten.  
 
+------
+# Flight Resevation System Example
+
+---
+class: pic
+# Monolithic Solution
+
+![One Cloud](OneCloud.png)
+
+---
+class: pic
+# Scale Out Monolithic Solution
+
+![Two Clouds](TwoClouds.png)
+
+---
+class: pic
+# Microservice Solution
+
+![Microservice Image with two containers in spread across two nodes](Micro1.png)
+
+---
+class: pic
+# Microservice Solution
+
+![Microservice Image with more containers in spread across three nodes](Micro2.png)
+
+---
+class: pic
+# Microservice Solution
+
+![Distributed DB across three nodes](db1.png)
+
 ---
 
 # Microservice Development
 
 ## 12 Factors
-```https://12factor.net/```
+
 - I. Codebase
 - II. Dependencies
 - III. Config
@@ -180,34 +213,210 @@ XII. Admin processes
 Run admin/management tasks as one-off processes
 
 ---
-class: pic
-# Monolithic Solution
 
-![One Cloud](OneCloud.png)
+## **I.** Codebase
 
----
-class: pic
-# Scale Out Monolithic Solution
+One codebase tracked in revision control, many deploys
 
-![Two Clouds](TwoClouds.png)
+<img src="img/codebase-deploys.png" width="40%" style="border: 0; box-shadow: none;">
 
 ---
-class: pic
-# Microservice Solution
+## **II.** Dependencies
 
-![Microservice Image with two containers in spread across two nodes](Micro1.png)
+Explicitly declare and isolate dependencies.
+
+<br>
+
+1. Declare **dependencies** in a **manifest**
+2. Use **isolation** tools
+3. **Specific** versions are important
 
 ---
-class: pic
-# Microservice Solution
 
-![Microservice Image with more containers in spread across three nodes](Micro2.png)
+## **II.** Dependencies
+
+**Dependency manifest**
+- `Gemfile` in Ruby
+- `requirements.txt` in Python
+
+**Isolation tools**
+- `bundle exec` in Ruby
+- `virtualenv` in Python
+
+**Versions**
+- `gem "redis-rails", "~> 3.2.3"` (Gemfile)
+- `django-redis==4.4.3` (requirements.txt)
+
 
 ---
-class: pic
-# Microservice Solution
 
-![Distributed DB across three nodes](db1.png)
+## **III.** Config
+
+> Store config in the environment
+
+<br>
+
+- Config is the **specific** information required to host a deployment of your codebase.
+- Mainly database **credentials**, **paths**, **resource URLs**, etc.
+- Keep your config **outside** the app
+- No config in git - Open Source test
+
+---
+
+## **III.** Config
+
+<br>
+
+##### Use **environment variables**
+
+```
+production:
+  adapter: mysql2
+  database: <%= ENV['DB_ENV_MYSQL_DATABASE'] %>
+  username: <%= ENV['DB_ENV_MYSQL_USER'] %>
+  password: <%= ENV['DB_ENV_MYSQL_PASS'] %>
+  port: <%= ENV['DB_PORT'] %>
+  host: <%= ENV['DB_HOST'] %>
+```
+
+---
+
+## **IV.** Backing services
+
+> Treat backing services as attached resources
+
+<br>
+
+- e.g. datastore, mail service, cache, message broker
+- Allows changing of service without code changes
+- Makes no distinction between **local** and **third-party** services
+
+---
+
+## **IV.** Backing services
+
+<img src="img/attached-resources.png" width="85%" style="border: 0; box-shadow: none;">
+
+---
+
+## **V.** Build, release, run
+
+> Strictly separate build and run stages
+
+<br>
+
+* `BUILD` = codebase + dependencies + assets
+* `RELEASE` = `BUILD` + config
+* `RUN` (runtime) = run process against `RELEASE`
+
+---
+
+## **V.** Build, release, run
+
+<img src="img/release.png" width="85%" style="border: 0; box-shadow: none;">
+
+---
+
+## **V.** Build, release, run
+<br>
+
+- **Cannot change** at **runtime**
+- **Rollback** = just use previous release
+- Every release has a unique **release ID**
+
+---
+
+## **VI.** Processes
+
+> Execute the app as one or more stateless processes
+
+<br>
+
+- Processes are **stateless** and **share nothing**
+- e.g. **No sticky sessions** to cache user data
+- Use a stateful backing service instead, typically a datastore
+- Allows **scaling out**
+
+---
+
+## **VII.** Port binding
+
+> Export services via port binding
+
+<br>
+
+- The **contract** with the **execution environment** is binding to a **port** to serve requests.
+- Allows **modularization**
+- One app can become the **backing service** for another app
+
+---
+
+## **VIII.** Concurrency
+
+> Scale out via the process model
+
+<br>
+
+- Processes can handle **own multiplexing**
+- Small defined apps allows scaling as need to handle load
+
+---
+
+## **VIII.** Concurrency
+
+#### Scale out by running multiple processes of different types
+
+<img src="img/process-types.png" width="50%" style="border: 0; box-shadow: none;">
+
+---
+
+## **IX.** Disposability
+
+> Maximize robustness with fast startup and graceful shutdown
+
+<br>
+
+- Processes are **disposable**
+- Start **quickly**, shutdown **gracefully**
+- Be robust against **sudden death**
+- Changes need to take effect quickly
+
+---
+
+## **X.** Dev/prod parity
+
+> Keep development, staging, and production as similar as possible
+
+<br>
+
+- **Shorten the gaps**
+- Get developers **involved** in operations
+- Continuous deployment requires same environment to **minimize errors**
+
+---
+
+## **XI.** Logs
+
+> Treat logs as event streams
+
+<br>
+
+- Logs are handled **differently** depending on the **environment**
+- **Don't** route or store **logs in files**
+- Stream to **stdout** instead to be captured by the environment
+
+---
+
+## **XII.** Admin processes
+
+> Run admin/management tasks as one-off processes
+
+<br>
+
+- Database migrations, console, one-time scripts
+- e.g. `python manage.py migrate`
+- Run as **separate** process
+- **Admin code** ships with **app code**
 
 ---
 
