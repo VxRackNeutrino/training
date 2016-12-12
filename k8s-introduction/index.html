@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kubernetes Introduction</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+        text-align: left;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .pic {
+        vertical-align: middle;
+        text-align: center;
+        /*padding: 0 0 0 0 !important;*/
+      }
+      img {
+        /*max-width: 40%;*/
+        max-height: 500px;
+        vertical-align: middle;
+        text-align: center;
+        /*padding: 0 0 0 0 !important;*/
+
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+## Introduction to
+
+<img src="img/logo.png">
+
+---
+
+### Kubernetes is an open source system for managing containerized applications across multiple hosts, providing basic mechanisms for deployment, maintenance, and scaling of applications
+
+---
+
+## Facts
+
+* Means "helmsman" or "pilot" in Greek
+* a.k.a. k8s
+* Project started by Google in 2014
+* Open source
+* Contributors
+  * Google, CoreOS, RedHat, Microsoft, etc.
+* Very active development
+  * 40k+ commits, 19k+ stars, 6k+ forks (as of Dec 2016)
+
+---
+
+## Features
+
+* Container grouping
+* Load-balacing
+* Auto-healing
+* Scalability
+
+---
+
+# Key Concepts
+
+---
+
+## pod
+
+* Basic deployment unit in Kubernetes
+* Contains one or more containers
+* Has a single IP address (shared by all containers)
+* All containers deployed to the same host
+
+---
+
+## label
+
+* Key/value pair
+* Attached to objects (e.g. pods)
+* Specify identifying attributes of objects that are meaningful and relevant to users
+* Can be modified at any time
+
+```json
+"labels": {
+  "environment": "dev",
+  "release": "canary",
+  "tier": "frontend",
+}
+```
+
+---
+
+### Services
+
+
+---
+
+### Replication Controller
+
+* Ensures that a specified number of pod "replicas" are running at any one time
+  * too many pods -> kill some
+  * too few pods -> start some
+* Supervises multiple pods across multiple nodes
+
+---
+
+### Replication Controller
+
+`replication.yaml`
+
+```yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: nginx
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+```
+
+
+---
+
+## Kubernetes architecture
+
+<img src="img/k8s_architecture_overview.png">
+
+---
+
+## Kubernetes components
+
+---
+
+### API Server
+
+---
+
+## etcd
+
+---
+
+## kube-controller-manager
+
+---
+
+### Scheduler
+
+---
+
+...
+
+---
+
+# Thank you
+
+## Questions?
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-0.14.0.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
