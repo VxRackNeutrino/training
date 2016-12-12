@@ -26,8 +26,8 @@
         vertical-align: middle;
         text-align: center;
         /*padding: 0 0 0 0 !important;*/
-    
-      }      
+
+      }
     </style>
   </head>
   <body>
@@ -104,7 +104,7 @@ You can use any language that provide RESTful APIs.
 Human cells are constantly dying and contantly regenerating.  Although we dont upgrade cells (yet) the idea is that you dont stop existing as because of this process.
 
 ## Farms
-Farm animals unlike pet are raised there is a lot of emotion when the family pet die, but a farm animal when it die tend to be replace by another one and the replaced one is quickly forgotten.  
+Farm animals unlike pet are raised there is a lot of emotion when the family pet die, but a farm animal when it die tend to be replace by another one and the replaced one is quickly forgotten.
 
 ------
 # Flight Resevation System Example
@@ -158,74 +158,18 @@ class: pic
 - XI. Logs
 - XII. Admin processes
 
-???
-
-I. Codebase
-
-One codebase tracked in revision control, many deploys
-
-II. Dependencies
-
-Explicitly decla![One Cloud](OneCloud.png)re and isolate dependencies
-
-III. Config
-
-Store config in the environment
-
-IV. Backing services
-
-Treat backing services as attached resources
-
-V. Build, release, run
-
-Strictly separate build and run stages
-
-VI. Processes
-
-Execute the app as       .pic {
-        vertical-align: middle;
-        text-align: center;
-        padding: 0 0 0 0 !important;
-      }one or more stateless processes
-
-VII. Port binding
-
-Export services via port binding
-https://termsfeed.com/
-VIII. Concurrency
-
-Scale out via the process model
-
-IX. Disposability
-
-Maximize robustness with fast startup and graceful shutdown
-
-X. Dev/prod parity
-
-Keep development, staging, and production as similar as possible
-
-XI. Logs
-
-Treat logs as event streams
-
-XII. Admin processes
-
-Run admin/management tasks as one-off processes
-
 ---
 
 ## **I.** Codebase
 
-One codebase tracked in revision control, many deploys
+### One codebase tracked in revision control, many deploys
 
 <img src="img/codebase-deploys.png" width="40%" style="border: 0; box-shadow: none;">
 
 ---
 ## **II.** Dependencies
 
-Explicitly declare and isolate dependencies.
-
-<br>
+### Explicitly declare and isolate dependencies.
 
 1. Declare **dependencies** in a **manifest**
 2. Use **isolation** tools
@@ -233,7 +177,7 @@ Explicitly declare and isolate dependencies.
 
 ---
 
-## **II.** Dependencies
+## **II.** Dependencies (cont'd)
 
 **Dependency manifest**
 - `Gemfile` in Ruby
@@ -252,22 +196,14 @@ Explicitly declare and isolate dependencies.
 
 ## **III.** Config
 
-> Store config in the environment
-
-<br>
+### Store config in the environment
 
 - Config is the **specific** information required to host a deployment of your codebase.
 - Mainly database **credentials**, **paths**, **resource URLs**, etc.
 - Keep your config **outside** the app
 - No config in git - Open Source test
 
----
-
-## **III.** Config
-
 <br>
-
-##### Use **environment variables**
 
 ```
 production:
@@ -285,15 +221,9 @@ production:
 
 > Treat backing services as attached resources
 
-<br>
-
 - e.g. datastore, mail service, cache, message broker
 - Allows changing of service without code changes
 - Makes no distinction between **local** and **third-party** services
-
----
-
-## **IV.** Backing services
 
 <img src="img/attached-resources.png" width="85%" style="border: 0; box-shadow: none;">
 
@@ -301,24 +231,17 @@ production:
 
 ## **V.** Build, release, run
 
-> Strictly separate build and run stages
-
-<br>
+### Strictly separate build and run stages
 
 * `BUILD` = codebase + dependencies + assets
 * `RELEASE` = `BUILD` + config
 * `RUN` (runtime) = run process against `RELEASE`
 
----
-
-## **V.** Build, release, run
-
 <img src="img/release.png" width="85%" style="border: 0; box-shadow: none;">
 
 ---
 
-## **V.** Build, release, run
-<br>
+## **V.** Build, release, run (cont'd)
 
 - **Cannot change** at **runtime**
 - **Rollback** = just use previous release
@@ -328,9 +251,7 @@ production:
 
 ## **VI.** Processes
 
-> Execute the app as one or more stateless processes
-
-<br>
+### Execute the app as one or more stateless processes
 
 - Processes are **stateless** and **share nothing**
 - e.g. **No sticky sessions** to cache user data
@@ -341,9 +262,7 @@ production:
 
 ## **VII.** Port binding
 
-> Export services via port binding
-
-<br>
+### Export services via port binding
 
 - The **contract** with the **execution environment** is binding to a **port** to serve requests.
 - Allows **modularization**
@@ -353,18 +272,10 @@ production:
 
 ## **VIII.** Concurrency
 
-> Scale out via the process model
-
-<br>
+### Scale out via the process model
 
 - Processes can handle **own multiplexing**
 - Small defined apps allows scaling as need to handle load
-
----
-
-## **VIII.** Concurrency
-
-#### Scale out by running multiple processes of different types
 
 <img src="img/process-types.png" width="50%" style="border: 0; box-shadow: none;">
 
@@ -372,9 +283,7 @@ production:
 
 ## **IX.** Disposability
 
-> Maximize robustness with fast startup and graceful shutdown
-
-<br>
+### Maximize robustness with fast startup and graceful shutdown
 
 - Processes are **disposable**
 - Start **quickly**, shutdown **gracefully**
@@ -385,9 +294,7 @@ production:
 
 ## **X.** Dev/prod parity
 
-> Keep development, staging, and production as similar as possible
-
-<br>
+### Keep development, staging, and production as similar as possible
 
 - **Shorten the gaps**
 - Get developers **involved** in operations
@@ -397,9 +304,7 @@ production:
 
 ## **XI.** Logs
 
-> Treat logs as event streams
-
-<br>
+### Treat logs as event streams
 
 - Logs are handled **differently** depending on the **environment**
 - **Don't** route or store **logs in files**
@@ -409,9 +314,7 @@ production:
 
 ## **XII.** Admin processes
 
-> Run admin/management tasks as one-off processes
-
-<br>
+### Run admin/management tasks as one-off processes
 
 - Database migrations, console, one-time scripts
 - e.g. `python manage.py migrate`
